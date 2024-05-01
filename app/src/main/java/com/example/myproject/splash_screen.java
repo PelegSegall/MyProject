@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.ktx.Firebase;
 
 public class splash_screen extends AppCompatActivity {
@@ -33,6 +34,6 @@ public class splash_screen extends AppCompatActivity {
                         sign_up.class));
             }
             finish();
-        },500);
+        },1000);
     }
 }

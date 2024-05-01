@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ProfileFrag2">
+
+    <EditText
+        android:id="@+id/fName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:hint="Enter First Name"
+        android:inputType="textPersonName"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:id="@+id/lName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:hint="Enter Last Name"
+        android:layout_marginTop="15dp"
+        android:inputType="textPersonName"/>
+
+    <RadioGroup
+        android:id="@+id/radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
+
+        <RadioButton
+            android:id="@+id/genM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:textSize="25sp"/>
+
+        <RadioButton
+            android:id="@+id/genF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:textSize="25sp"/>
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/ageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/indicator"
+            android:gravity="center"
+            android:text="0 yo"
+            android:textSize="15sp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"/>
+
+        <SeekBar
+            android:id="@+id/ageBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="120"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/heightView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/indicator"
+            android:gravity="center"
+            android:text="0 m"
+            android:textSize="15sp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"/>
+
+        <SeekBar
+            android:id="@+id/heightBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="220"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/weightView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/indicator"
+            android:gravity="center"
+            android:text="0 kg"
+            android:textSize="15sp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"/>
+
+        <SeekBar
+            android:id="@+id/weightBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="200"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_corners_btn"
+            android:text="Save"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+</LinearLayout>
