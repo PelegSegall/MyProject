@@ -35,7 +35,6 @@ public class Recipes_activity extends AppCompatActivity implements RecyclerViewI
     private RecyclerView recyclerView;
     private ArrayList<recipe_feed>arrayList;
     FrameLayout recipe_popUp;
-    Recipes[]mealType=new Recipes[6];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
