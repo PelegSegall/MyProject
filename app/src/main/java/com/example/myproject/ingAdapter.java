@@ -7,21 +7,21 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class PrepAdapter extends BaseAdapter {
+public class ingAdapter extends BaseAdapter {
 
     Context context;
-    String[]prepArray;
+    String[]array;
     LayoutInflater inflater;
 
-    public PrepAdapter(Context ctx, String[] prepArray) {
+    public ingAdapter(Context ctx, String[] array) {
         this.context = ctx;
-        this.prepArray = prepArray;
+        this.array = array;
         inflater=LayoutInflater.from(ctx);
     }
 
     @Override
     public int getCount() {
-        return prepArray.length;
+        return array.length;
     }
 
     @Override
@@ -33,15 +33,14 @@ public class PrepAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
-
-    TextView stepNum, stepInfo;
+    TextView stepSign, stepInfo;
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView= inflater.inflate(R.layout.prep_listview, null);
-        stepNum= convertView.findViewById(R.id.prep_num);
+        convertView= inflater.inflate(R.layout.ing_listview, null);
+        stepSign= convertView.findViewById(R.id.prep_sign);
         stepInfo= convertView.findViewById(R.id.prep_step);
-        stepNum.setText(String.valueOf(position+1));
-        stepInfo.setText(prepArray[position]);
+        stepSign.setText("●");
+        stepInfo.setText(array[position]);
         return convertView;
     }
 }

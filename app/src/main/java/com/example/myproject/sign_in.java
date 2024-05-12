@@ -1,6 +1,8 @@
 package com.example.myproject;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -27,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import java.util.List;
 import java.util.Objects;
 
 public class sign_in extends AppCompatActivity {
@@ -104,8 +107,11 @@ public class sign_in extends AppCompatActivity {
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            finishAndRemoveTask();
-                            finish();
+                            ActivityManager activityManager=(ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+                            List<ActivityManager.AppTask> appTasks=activityManager.getAppTasks();
+                            for (ActivityManager.AppTask appTask:appTasks){
+                                appTask.finishAndRemoveTask();
+                            }
                         }
                     })
                     .setNegativeButton("No",null)

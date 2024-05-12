@@ -1,6 +1,8 @@
 package com.example.myproject;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,6 +30,8 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.List;
 
 public class Profile extends AppCompatActivity {
 
@@ -106,9 +110,11 @@ public class Profile extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                finishAndRemoveTask();
-                                finish();
-                                System.exit(0);
+                                ActivityManager activityManager=(ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+                                List<ActivityManager.AppTask> appTasks=activityManager.getAppTasks();
+                                for (ActivityManager.AppTask appTask:appTasks){
+                                    appTask.finishAndRemoveTask();
+                                }
                             }
                         })
                         .setNegativeButton("No",null)

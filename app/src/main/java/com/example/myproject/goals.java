@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -18,6 +20,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.List;
 
 public class goals extends AppCompatActivity {
 
@@ -72,12 +76,9 @@ public class goals extends AppCompatActivity {
                 new AlertDialog.Builder(this)
                         .setMessage("Are you sure you want to sign out?")
                         .setCancelable(false)
-                        .setPositiveButton("Sign Out", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent= new Intent(goals.this, sign_in.class);
-                                startActivity(intent);
-                            }
+                        .setPositiveButton("Sign Out", (dialog, which) -> {
+                            Intent intent= new Intent(goals.this, sign_in.class);
+                            startActivity(intent);
                         })
                         .setNegativeButton("No",null)
                         .show();
@@ -87,11 +88,11 @@ public class goals extends AppCompatActivity {
                 new AlertDialog.Builder(this)
                         .setMessage("Are you sure you want to exit?")
                         .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                finishAndRemoveTask();
-                                finish();
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            ActivityManager activityManager=(ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+                            List<ActivityManager.AppTask> appTasks=activityManager.getAppTasks();
+                            for (ActivityManager.AppTask appTask:appTasks){
+                                appTask.finishAndRemoveTask();
                             }
                         })
                         .setNegativeButton("No",null)

@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -26,6 +28,7 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Recipes_activity extends AppCompatActivity implements RecyclerViewInterface{
 
@@ -57,6 +60,8 @@ public class Recipes_activity extends AppCompatActivity implements RecyclerViewI
                 int itemId = item.getItemId();
                 if (itemId == R.id.home) {
                     Toast.makeText(Recipes_activity.this,"Home is selected", Toast.LENGTH_SHORT).show();
+                    Intent intent= new Intent(Recipes_activity.this, home_page.class);
+                    startActivity(intent);
                     return true;
                 } else if (itemId == R.id.Profile) {
                     Toast.makeText(Recipes_activity.this,"Profile is selected", Toast.LENGTH_SHORT).show();
@@ -100,8 +105,11 @@ public class Recipes_activity extends AppCompatActivity implements RecyclerViewI
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    finishAndRemoveTask();
-                                    finish();
+                                    ActivityManager activityManager=(ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+                                    List<ActivityManager.AppTask> appTasks=activityManager.getAppTasks();
+                                    for (ActivityManager.AppTask appTask:appTasks){
+                                        appTask.finishAndRemoveTask();
+                                    }
                                 }
                             })
                             .setNegativeButton("No",null)
@@ -137,24 +145,6 @@ public class Recipes_activity extends AppCompatActivity implements RecyclerViewI
         return super.onOptionsItemSelected(item);
     }
 
-    private void CreatePopUp(){
-        LayoutInflater inflater=(LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popUpview= inflater.inflate(R.layout.recipe_popup,null);
-        int width= ViewGroup.LayoutParams.MATCH_PARENT;
-        int height= ViewGroup.LayoutParams.MATCH_PARENT;
-        boolean focusable=true;
-        PopupWindow popupWindow=new PopupWindow(popUpview,width,height,focusable);
-        recipe_popUp.post(() -> {
-            popupWindow.showAtLocation(recipe_popUp, Gravity.CENTER, 0, 0);
-            drawerLayout.setAlpha((float)0.1);
-        });
-        popUpview.setOnTouchListener((v, event) -> {
-            popupWindow.dismiss();
-            drawerLayout.setAlpha((float)1);
-            return true;
-        });
-    }
-
     @SuppressLint("ObsoleteSdkInt")
     private void forceRTLIfSupported() {
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.JELLY_BEAN_MR1){
@@ -164,6 +154,6 @@ public class Recipes_activity extends AppCompatActivity implements RecyclerViewI
 
     @Override
     public void OnItemClick(int position) {
-        CreatePopUp();
+        startActivity(new Intent(Recipes_activity.this,recipe_info_Activity.class));
     }
 }

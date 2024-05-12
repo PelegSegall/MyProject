@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Summary extends AppCompatActivity {
 
@@ -96,9 +99,11 @@ public class Summary extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                finishAndRemoveTask();
-                                System.exit(0);
-                                finish();
+                                ActivityManager activityManager=(ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+                                List<ActivityManager.AppTask> appTasks=activityManager.getAppTasks();
+                                for (ActivityManager.AppTask appTask:appTasks){
+                                    appTask.finishAndRemoveTask();
+                                }
                             }
                         })
                         .setNegativeButton("No",null)

@@ -1,6 +1,8 @@
 package com.example.myproject;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -24,6 +26,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.List;
 
 public class home_page extends AppCompatActivity {
 
@@ -116,8 +120,11 @@ public class home_page extends AppCompatActivity {
                         .setMessage("Are you sure you want to exit?")
                         .setCancelable(false)
                         .setPositiveButton("Yes", (dialog, which) -> {
-                            finishAndRemoveTask();
-                            finish();
+                            ActivityManager activityManager=(ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+                            List<ActivityManager.AppTask>appTasks=activityManager.getAppTasks();
+                            for (ActivityManager.AppTask appTask:appTasks){
+                                appTask.finishAndRemoveTask();
+                            }
                         })
                         .setNegativeButton("No",null)
                         .show();
