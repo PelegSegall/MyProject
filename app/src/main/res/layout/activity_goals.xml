@@ -10,34 +10,72 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <LinearLayout
+        android:orientation="vertical">
+>
+        <ImageButton
+            android:id="@+id/addGoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="top">
+            android:background="@drawable/baseline_add_24"
+            android:backgroundTint="@color/black"
+            android:layout_gravity="left"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"/>
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/baseline_add_24"
-                android:backgroundTint="@color/black"
-                android:layout_gravity="left"/>
+        <Space
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:visibility="gone"/>
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/no_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="No Goals Have been Created Yet"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                android:id="@+id/successRate"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:cpb_progress_direction="to_left"/>/>
 
             <TextView
-                android:id="@+id/no_items"
-                android:layout_width="match_parent"
+                android:id="@+id/successStats"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="No Goals Have been Created Yet"
-                android:textColor="@color/black"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="20sp"
+                android:textColor="@color/turkiz"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/goals_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"/>
 
     </LinearLayout>
 

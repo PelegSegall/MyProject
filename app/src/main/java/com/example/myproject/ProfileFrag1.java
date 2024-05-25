@@ -39,11 +39,6 @@ public class ProfileFrag1 extends Fragment {
 
         save=view.findViewById(R.id.save);
 
-        if(UserService.guestUser!=null) {
-            String[] name=UserService.guestUser.getFullName().split(" ");
-            fName.setText(name[0]);
-        }
-
         save.setOnClickListener(v -> {
 
             String fullName=fName.getText().toString()+" "+lName.getText().toString();
@@ -54,27 +49,16 @@ public class ProfileFrag1 extends Fragment {
             if(fName==null||lName==null||profileImage==null) {
                 Toast.makeText(getContext(), "One of the must fields hasn't been entered", Toast.LENGTH_SHORT).show();
             } else {
-                GuestUserProfile guestUserProfile =createUserProfileFromForm1(fullName,profileImage);
-                createUser(guestUserProfile);
+                GuestUserProfile guestUserProfile =createGuestFromForm(fullName,profileImage);
+
             }
         });
 
         return view;
     }
-    public void createUser(GuestUserProfile guestUserProfile) {
-        UserService.setMyGuestUser(guestUserProfile).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                startActivity(new Intent(getContext(),
-                        home_page.class));
-            } else {
-                Toast.makeText(getContext(),
-                        "Error: " + task.getException().getLocalizedMessage(),
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 
-    public static GuestUserProfile createUserProfileFromForm1(String fullName, Uri profilePhoto){
+
+    public static GuestUserProfile createGuestFromForm(String fullName, Uri profilePhoto){
         return new GuestUserProfile(fullName,profilePhoto);
     }
 }

@@ -17,12 +17,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -35,9 +31,8 @@ public class Recipes_activity extends AppCompatActivity implements RecyclerViewI
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle drawerToggle;
-    private RecyclerView recyclerView;
+    private RecyclerView recipesRecycler;
     private ArrayList<recipe_feed>arrayList;
-    FrameLayout recipe_popUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,17 +117,15 @@ public class Recipes_activity extends AppCompatActivity implements RecyclerViewI
 
         arrayList=new ArrayList<>();
 
-        recyclerView=findViewById(R.id.recyclerView);
+        recipesRecycler=findViewById(R.id.recipes_recycler);
 
         arrayList.add(new recipe_feed(R.drawable.outline_account_circle_24,R.drawable.outline_fastfood_24,"name"));
         arrayList.add(new recipe_feed(R.drawable.outline_account_circle_24,R.drawable.outline_fastfood_24,"name"));
 
-        RecyclerAdapter recyclerAdapter= new RecyclerAdapter(arrayList, this);
+        RecipesAdapter recipesAdapter= new RecipesAdapter(arrayList, this);
 
-        recyclerView.setAdapter(recyclerAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        recipe_popUp=findViewById(R.id.recipe_popUp);
+        recipesRecycler.setAdapter(recipesAdapter);
+        recipesRecycler.setLayoutManager(new LinearLayoutManager(this));
 
         forceRTLIfSupported();
     }

@@ -52,9 +52,9 @@ public class UserProfile extends GuestUserProfile {
 
     public int getBMR(){
         int bmr=0;
-        if(gender == "Male"){
+        if(gender.equals("Male")){
             bmr= (int)(88.362 + (13.397 * weight) + (4.799 * height*100) - (5.677 * age));
-        } else if (gender == "Female"){
+        } else if (gender.equals("Female")){
             bmr= (int)(447.593 + (9.247 * weight) + (3.098 * height*100) - (4.330 * age));
         }
         return bmr;

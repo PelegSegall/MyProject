@@ -142,13 +142,7 @@ public class ProfileFrag2 extends Fragment {
             }
         });
 
-        if(UserService.guestUser!=null) {
-            String[] name=UserService.guestUser.getFullName().split(" ");
-            fName.setText(name[0]);
-        }else if(UserService.myUser!=null){
-            String[] name=UserService.guestUser.getFullName().split(" ");
-            fName.setText(name[0]);
-        }
+
 
         save.setOnClickListener(v -> {
 

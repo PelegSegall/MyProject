@@ -1,26 +1,27 @@
 package com.example.myproject;
 
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.Toast;
-
-import androidx.fragment.app.ListFragment;
 
 import java.io.Serializable;
 
-public class ingFrag extends ListFragment {
+public class finishFrag extends Fragment {
 
-    public static ingFrag newInstance(String[] array) {
-        ingFrag fragment = new ingFrag();
+    public static finishFrag newInstance(String[] array) {
+        finishFrag fragment = new finishFrag();
         Bundle args = new Bundle();
-        args.putStringArray("ingArray",array);
+        args.putStringArray("ingArray",(String[])array);
         fragment.setArguments(args);
         return fragment;
     }
 
+    String[]ingArray, prepArray, nutriArray;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,18 +29,16 @@ public class ingFrag extends ListFragment {
 
         if(getArguments()!=null) {
             ingArray= getArguments().getStringArray("ingArray");
-        }
-    }
+        } ingFrag.newInstance(ingArray);
 
-    String[]ingArray;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_ing, container, false);
+        View view= inflater.inflate(R.layout.fragment_finish, container, false);
 
-        ingAdapter iAdapter=new ingAdapter(inflater.getContext(), ingArray);
-        setListAdapter(iAdapter);
         return view;
     }
+
 }

@@ -2,11 +2,15 @@ package com.example.myproject;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,15 +38,19 @@ public class home_page extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle drawerToggle;
-    ProgressBar progressBar1,progressBar2,progressBar3,progressBar4,progressBar5,progressBar6,progressBar7;
-    ImageView check1,check2,check3,check4,check5,check6,check7;
+    ProgressBar progressBar1,progressBar2,progressBar3,progressBar4,progressBar5,progressBar6,progressBar7,progressBar8;
+    ImageView check1,check2,check3,check4,check5,check6,check7,check8;
     AnimatedVectorDrawableCompat avd;
     AnimatedVectorDrawable avd2;
     String gender;
-    int age,weight,BMR,water;
-    double height;
-    TextView prog1,prog2,prog3,prog4,prog5,prog6,prog7,goal1,goal2,goal3,goal4,goal5,goal6,goal7;
-    Drawable drawable1,drawable2,drawable3,drawable4,drawable5,drawable6,drawable7;
+    TextView prog1,prog2,prog3,prog4,prog5,prog6,prog7,prog8,goal1,goal2,goal3,goal4,goal5,goal6,goal7,goal8;
+    Drawable drawable1,drawable2,drawable3,drawable4,drawable5,drawable6,drawable7,drawable8;
+    BroadcastReceiver broadcastReceiver;
+    SharedPreferences sharedPreferences;
+    private static final String SHARED_PREF_NAME="myPref";
+    private static final String KEY_NAME="name";
+    private static final String KEY_EMAIL="email";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +64,7 @@ public class home_page extends AppCompatActivity {
         prog5=findViewById(R.id.prog5);
         prog6=findViewById(R.id.prog6);
         prog7=findViewById(R.id.prog7);
+        prog8=findViewById(R.id.prog8);
 
         goal1=findViewById(R.id.goal1);
         goal2=findViewById(R.id.goal2);
@@ -64,6 +73,7 @@ public class home_page extends AppCompatActivity {
         goal5=findViewById(R.id.goal5);
         goal6=findViewById(R.id.goal6);
         goal7=findViewById(R.id.goal7);
+        goal8=findViewById(R.id.goal8);
 
         drawerLayout=findViewById(R.id.drawerLayout);
         navigationView=findViewById(R.id.nav_view);
@@ -133,6 +143,9 @@ public class home_page extends AppCompatActivity {
             return false;
         });
 
+        int age,weight,BMR=0 ,water;
+        double height;
+
         if(UserService.myUser==null){
             gender="";
             age=0;
@@ -143,19 +156,8 @@ public class home_page extends AppCompatActivity {
             age = UserService.myUser.getAge();
             height= UserService.myUser.getHeight();
             weight= UserService.myUser.getWeight();
+            BMR=UserService.myUser.getBMR();
         }
-
-
-        Toast.makeText(this, String.valueOf(age), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, String.valueOf(height), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, String.valueOf(weight), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, gender, Toast.LENGTH_SHORT).show();
-        if(gender == "Male"){
-            BMR= (int)(88.362 + (13.397 * weight) + (4.799 * height*100) - (5.677 * age));
-        } else if (gender == "Female"){
-            BMR= (int)(447.593 + (9.247 * weight) + (3.098 * height*100) - (4.330 * age));
-        }
-        Toast.makeText(this, String.valueOf(BMR), Toast.LENGTH_SHORT).show();
 
         progressBar1=findViewById(R.id.progressBar1);
         progressBar2=findViewById(R.id.progressBar2);
@@ -164,6 +166,7 @@ public class home_page extends AppCompatActivity {
         progressBar5=findViewById(R.id.progressBar5);
         progressBar6=findViewById(R.id.progressBar6);
         progressBar7=findViewById(R.id.progressBar7);
+        progressBar8=findViewById(R.id.progressBar8);
 
         check1=findViewById(R.id.checkMark1);
         check2=findViewById(R.id.checkMark2);
@@ -172,6 +175,7 @@ public class home_page extends AppCompatActivity {
         check5=findViewById(R.id.checkMark5);
         check6=findViewById(R.id.checkMark6);
         check7=findViewById(R.id.checkMark7);
+        check8=findViewById(R.id.checkMark8);
 
         drawable1=check1.getDrawable();
         drawable2=check2.getDrawable();
@@ -180,6 +184,7 @@ public class home_page extends AppCompatActivity {
         drawable5=check5.getDrawable();
         drawable6=check6.getDrawable();
         drawable7=check7.getDrawable();
+        drawable8=check8.getDrawable();
 
         goal1.setText("0");
         progressBar1.setMax(0);
@@ -239,10 +244,6 @@ public class home_page extends AppCompatActivity {
             }
         },1000);
 
-        water=(35*weight)/240;
-        progressBar5.setMax(water);
-        goal5.setText(String.valueOf(water));
-
         new Handler().postDelayed(() -> {
             prog5.setText(String.valueOf(progressBar5.getProgress()));
             if (progressBar5.getProgress() == progressBar5.getMax()) {
@@ -282,6 +283,28 @@ public class home_page extends AppCompatActivity {
             }
         },1000);
 
+        water=(35*weight)/240;
+        progressBar8.setMax(water);
+        goal8.setText(String.valueOf(water));
+
+        new Handler().postDelayed(() -> {
+            prog8.setText(String.valueOf(progressBar8.getProgress()));
+            if (progressBar8.getProgress() == progressBar8.getMax()) {
+                if (drawable8 instanceof AnimatedVectorDrawableCompat) {
+                    avd = (AnimatedVectorDrawableCompat) drawable8;
+                    avd.start();
+                } else if (drawable8 instanceof AnimatedVectorDrawable) {
+                    avd2 = (AnimatedVectorDrawable) drawable8;
+                    avd2.start();
+                }
+            }
+        },1000);
+
+        broadcastReceiver=new InternetReceiver();
+        internetStatus();
+
+        sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+
         forceRTLIfSupported();
     }
 
@@ -291,6 +314,15 @@ public class home_page extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void internetStatus(){
+        registerReceiver(broadcastReceiver,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    public void onPause(){
+        super.onPause();
+        unregisterReceiver(broadcastReceiver);
     }
 
     @SuppressLint("ObsoleteSdkInt")

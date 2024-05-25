@@ -7,12 +7,13 @@ import java.util.ArrayList;
 public class Recipes extends Nutrients{
 
     private String type,veg,taste,dairy_meat;
-    private ArrayList<String>description, ingredients;
+    private ArrayList<String>description, ingredients, nutrients;
     private Bitmap image;
 
-    public Recipes(double calories, double carbs, double fats, double proteins, String vitamins, String minerals,
-                   String type, String veg, String taste, String dairy_meat,
-                   ArrayList<String> description, ArrayList<String> ingredients, Bitmap image) {
+    public Recipes(double calories, double carbs, double fats, double proteins,
+                   String vitamins, String minerals, String type, String veg, String taste, String dairy_meat,
+                   ArrayList<String> description, ArrayList<String> ingredients, ArrayList<String> nutrients,
+                   Bitmap image) {
         super(calories, carbs, fats, proteins, vitamins, minerals);
         this.type = type;
         this.veg = veg;
@@ -20,6 +21,7 @@ public class Recipes extends Nutrients{
         this.dairy_meat = dairy_meat;
         this.description = description;
         this.ingredients = ingredients;
+        this.nutrients = nutrients;
         this.image = image;
     }
 
@@ -71,6 +73,14 @@ public class Recipes extends Nutrients{
         this.ingredients = ingredients;
     }
 
+    public ArrayList<String> getNutrients() {
+        return nutrients;
+    }
+
+    public void setNutrients(ArrayList<String> nutrients) {
+        this.nutrients = nutrients;
+    }
+
     public Bitmap getImage() {
         return image;
     }
@@ -88,6 +98,7 @@ public class Recipes extends Nutrients{
                 ", dairy_meat='" + dairy_meat + '\'' +
                 ", description=" + description +
                 ", ingredients=" + ingredients +
+                ", nutrients=" + nutrients +
                 ", image=" + image +
                 ", calories=" + calories +
                 ", carbs=" + carbs +

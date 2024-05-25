@@ -1,14 +1,13 @@
 package com.example.myproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.ktx.Firebase;
 
 public class splash_screen extends AppCompatActivity {
 
@@ -34,6 +33,6 @@ public class splash_screen extends AppCompatActivity {
                         sign_up.class));
             }
             finish();
-        },1000);
+        },750);
     }
 }

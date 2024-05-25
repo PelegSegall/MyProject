@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHolder> {
 
     private final RecyclerViewInterface recyclerViewInterface;
     private ArrayList<recipe_feed> arrayList;
 
-    public RecyclerAdapter(ArrayList<recipe_feed> arrayList,
-                           RecyclerViewInterface recyclerViewInterface){
+    public RecipesAdapter(ArrayList<recipe_feed> arrayList,
+                          RecyclerViewInterface recyclerViewInterface){
         this.arrayList=arrayList;
         this.recyclerViewInterface=recyclerViewInterface;
     }

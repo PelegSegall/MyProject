@@ -12,7 +12,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 
 public class Recipe_item extends AppCompatActivity {
 
-    ImageButton like,comment,save;
+    ImageButton like,comment,save, mealAdd;
     ShapeableImageView profileImage;
     int num=1;
 
@@ -39,5 +39,12 @@ public class Recipe_item extends AppCompatActivity {
             }
         });
 
+        mealAdd= findViewById(R.id.mealAdd);
+        mealAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }

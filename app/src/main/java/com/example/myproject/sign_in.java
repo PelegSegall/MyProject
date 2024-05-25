@@ -56,7 +56,9 @@ public class sign_in extends AppCompatActivity {
             startActivity(intent);
         });
 
-        continueBt.setOnClickListener(v -> signIn());
+        continueBt.setOnClickListener(v -> {
+            signIn();
+        });
 
         forceRTLIfSupported();
     }

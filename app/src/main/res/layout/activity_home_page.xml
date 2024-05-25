@@ -41,7 +41,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Calories to burn"
+                        android:text="Calories you burnt"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:layout_weight="1"/>

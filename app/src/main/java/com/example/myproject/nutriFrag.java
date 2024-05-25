@@ -19,7 +19,7 @@ public class nutriFrag extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_ingre, container, false);
+        View view= inflater.inflate(R.layout.fragment_nutri, container, false);
 
 
         nutriAdapter nAdapter=new nutriAdapter(inflater.getContext(), nutriArray);

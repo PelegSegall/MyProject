@@ -1,0 +1,121 @@
+@startuml
+class com.example.myproject.GuestUserProfile {
+- String fullName
+- Uri profilePhoto
++ <<Create>> GuestUserProfile(String,Uri)
++ String getFullName()
++ void setFullName(String)
++ Uri getProfilePhoto()
++ void setProfilePhoto(Uri)
++ String toString()
+}
+
+
+class com.example.myproject.Nutrients {
+# double calories
+# String vitamins
++ <<Create>> Nutrients(double,double,double,double,String,String)
++ double getCalories()
++ void setCalories(double)
++ double getCarbs()
++ void setCarbs(double)
++ double getFats()
++ void setFats(double)
++ double getProteins()
++ void setProteins(double)
++ String getVitamins()
++ void setVitamins(String)
++ String getMinerals()
++ void setMinerals(String)
++ String toString()
+}
+
+
+class com.example.myproject.Recipes {
+- String type
+- ArrayList<String> description
+- Bitmap image
++ <<Create>> Recipes(double,double,double,double,String,String,String,String,String,String,ArrayList<String>,ArrayList<String>,ArrayList<String>,Bitmap)
++ String getType()
++ void setType(String)
++ String getVeg()
++ void setVeg(String)
++ String getTaste()
++ void setTaste(String)
++ String getDairy_meat()
++ void setDairy_meat(String)
++ ArrayList<String> getDescription()
++ void setDescription(ArrayList<String>)
++ ArrayList<String> getIngredients()
++ void setIngredients(ArrayList<String>)
++ ArrayList<String> getNutrients()
++ void setNutrients(ArrayList<String>)
++ Bitmap getImage()
++ void setImage(Bitmap)
++ String toString()
+}
+
+
+class com.example.myproject.UserProfile {
+- String gender
+- int age
+- double height
+- int weight
++ <<Create>> UserProfile(String,Uri,String,int,double,int)
++ String getGender()
++ void setGender(String)
++ int getAge()
++ void setAge(int)
++ double getHeight()
++ void setHeight(double)
++ int getWeight()
++ void setWeight(int)
++ int getBMR()
++ String toString()
+}
+
+
+class com.example.myproject.super__user {
+- boolean isAdmin
++ <<Create>> super__user(String,Uri,String,int,double,int,boolean)
++ boolean isAdmin()
++ void setAdmin(boolean)
++ String toString()
+}
+
+
+class com.example.myproject.goal_feed {
+- String description
+- int current
++ <<Create>> goal_feed(String,int,int)
++ String getDescription()
++ void setDescription(String)
++ int getCurrent()
++ void setCurrent(int)
++ int getMax()
++ void setMax(int)
++ String toString()
+}
+
+
+class com.example.myproject.recipe_feed {
+- int profileImage
+- int recipeImage
+- String name
++ <<Create>> recipe_feed(int,int,String)
++ int getProfileImage()
++ void setProfileImage(int)
++ int getRecipeImage()
++ void setRecipeImage(int)
++ String getName()
++ void setName(String)
+}
+
+
+
+
+com.example.myproject.Nutrients <|-- com.example.myproject.Recipes
+com.example.myproject.GuestUserProfile <|-- com.example.myproject.UserProfile
+com.example.myproject.UserProfile <|-- com.example.myproject.super__user
+java.io.Serializable <|.. com.example.myproject.goal_feed
+@enduml

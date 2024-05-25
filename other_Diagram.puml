@@ -1,0 +1,393 @@
+@startuml
+class com.example.myproject.goalOptions {
+- ListView optionsList
+- ArrayList<String> arrayList
+~ Serializable newArray1
+~ ArrayList<goal_feed> newArray2
+~ Intent intent
+# void onCreate(Bundle)
++ boolean onOptionsItemSelected(MenuItem)
+- void forceRTLIfSupported()
+}
+
+
+class com.example.myproject.ingAdapter {
+~ Context context
+~ String[] array
+~ LayoutInflater inflater
+~ TextView stepSign
++ <<Create>> ingAdapter(Context,String[])
++ int getCount()
++ Object getItem(int)
++ long getItemId(int)
++ View getView(int,View,ViewGroup)
+}
+
+
+interface com.example.myproject.RecyclerViewInterface {
+~ void OnItemClick(int)
+}
+
+class com.example.myproject.PrepAdapter {
+~ Context context
+~ String[] prepArray
+~ LayoutInflater inflater
+~ TextView stepNum
++ <<Create>> PrepAdapter(Context,String[])
++ int getCount()
++ Object getItem(int)
++ long getItemId(int)
++ View getView(int,View,ViewGroup)
+}
+
+
+class com.example.myproject.home_page {
+~ DrawerLayout drawerLayout
+~ NavigationView navigationView
+~ ActionBarDrawerToggle drawerToggle
+~ ProgressBar progressBar1
+~ ImageView check1
+~ AnimatedVectorDrawableCompat avd
+~ AnimatedVectorDrawable avd2
+~ String gender
+~ TextView prog1
+~ Drawable drawable1
+~ BroadcastReceiver broadcastReceiver
+~ SharedPreferences sharedPreferences
+- {static} String SHARED_PREF_NAME
+- {static} String KEY_NAME
+- {static} String KEY_EMAIL
+# void onCreate(Bundle)
++ boolean onOptionsItemSelected(MenuItem)
++ void internetStatus()
++ void onPause()
+- void forceRTLIfSupported()
+}
+
+
+class com.example.myproject.goals {
+~ DrawerLayout drawerLayout
+~ NavigationView navigationView
+~ ActionBarDrawerToggle drawerToggle
+~ ImageButton addGoal
+- RecyclerView goalsRecycler
+- ArrayList<goal_feed> arrayList
+~ Space space
+~ TextView noItem
+~ CircularProgressBar success
+~ Intent intent
+# void onCreate(Bundle)
++ boolean onOptionsItemSelected(MenuItem)
+- void forceRTLIfSupported()
+}
+
+
+class com.example.myproject.ProfileFrag2 {
+# EditText fName
+# RadioGroup radio
+# RadioButton genM
+# SeekBar heightB
+# TextView heightV
+# Button save
+# int age
+# double height
+~ Intent intent
++ <<Create>> ProfileFrag2()
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void createUser(UserProfile)
++ {static} UserProfile createUserProfileFromForm(String,Uri,String,int,double,int)
+}
+
+
+class com.example.myproject.UserService {
+~ {static} UserProfile myUser
+~ {static} Task<Void> setMyUser(UserProfile)
+~ {static} Task<UserProfile> getUserById(String)
+}
+
+
+class com.example.myproject.recipe_info_Activity {
+# void onCreate(Bundle)
++ boolean onOptionsItemSelected(MenuItem)
+- void forceRTLIfSupported()
+}
+
+class com.example.myproject.CheckInternet {
++ {static} String getNetworkInfo(Context)
+}
+
+class com.example.myproject.ingFrag {
+~ String[] ingArray
++ {static} ingFrag newInstance(String[])
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+
+
+class com.example.myproject.prepFragCreate {
+~ TextView stepNum
+~ EditText stepDes
+~ ImageButton forward
+~ Button addBtn
+~ List<String> list
+~ int i
++ <<Create>> prepFragCreate()
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+
+
+class com.example.myproject.ProfileFrag1 {
+# EditText fName
+# Button save
+~ Intent intent
++ <<Create>> ProfileFrag1()
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ {static} GuestUserProfile createGuestFromForm(String,Uri)
+}
+
+
+class com.example.myproject.recipeCreate {
+~ FrameLayout frameLayout
+~ TabLayout tabLayout
+# void onCreate(Bundle)
+- void forceRTLIfSupported()
+}
+
+
+class com.example.myproject.sign_in {
+# EditText mail
+# Button signUp
+# FrameLayout layoutAbout
+# LinearLayout layout
+# void onCreate(Bundle)
+- void signIn()
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+- void CreatePopUp1()
+- void CreatePopUp2()
+- void forceRTLIfSupported()
+}
+
+
+class com.example.myproject.Profile {
+# FrameLayout frameLayout
+# TabLayout tabLayout
+# DrawerLayout drawerLayout
+# NavigationView navigationView
+# ActionBarDrawerToggle drawerToggle
+# ImageView imageView
+# Bitmap profileImage
+# FloatingActionButton fBtn
+# Uri uri
+# void onCreate(Bundle)
++ boolean onOptionsItemSelected(MenuItem)
+# void onActivityResult(int,int,Intent)
+- void forceRTLIfSupported()
+}
+
+
+class com.example.myproject.sign_up {
+# EditText mail
+# Button signIn
+# FrameLayout layoutAbout
+# LinearLayout layout
+# void onCreate(Bundle)
+- void signUp()
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+- void CreatePopUp1()
+- void CreatePopUp2()
+- void forceRTLIfSupported()
+}
+
+
+class com.example.myproject.Summary {
+~ DrawerLayout drawerLayout
+~ NavigationView navigationView
+~ ActionBarDrawerToggle drawerToggle
+~ Spinner spinner
+# void onCreate(Bundle)
++ boolean onOptionsItemSelected(MenuItem)
+- void forceRTLIfSupported()
+}
+
+
+class com.example.myproject.nutriFrag {
+~ String[] nutriArray
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+
+
+class com.example.myproject.Recipes_activity {
+~ DrawerLayout drawerLayout
+~ NavigationView navigationView
+~ ActionBarDrawerToggle drawerToggle
+- RecyclerView recipesRecycler
+- ArrayList<recipe_feed> arrayList
+# void onCreate(Bundle)
++ boolean onOptionsItemSelected(MenuItem)
+- void forceRTLIfSupported()
++ void OnItemClick(int)
+}
+
+
+class com.example.myproject.photoFrag {
+- {static} String ARG_PARAM1
+- {static} String ARG_PARAM2
+- String mParam1
+- String mParam2
++ <<Create>> photoFrag()
++ {static} photoFrag newInstance(String,String)
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+
+
+class com.example.myproject.Recipe_item {
+~ ImageButton like
+~ ShapeableImageView profileImage
+~ int num
+# void onCreate(Bundle)
+}
+
+
+class com.example.myproject.GoalAdapter {
+- ArrayList<goal_feed> arrayList
++ <<Create>> GoalAdapter(ArrayList<goal_feed>)
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+
+
+class com.example.myproject.GoalAdapter$ViewHolder {
+~ TextView description
+~ ProgressBar goalProgress
++ <<Create>> ViewHolder(View)
+}
+
+
+class com.example.myproject.ingFragCreate {
+~ TextView stepNum
+~ EditText stepDes
+~ LinearLayout arrows
+~ ImageButton forward
+~ Button addBtn
+~ List<String> list
+~ Intent intent
+~ int i
+~ int m
+~ String[] ingArray
++ <<Create>> ingFragCreate()
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+
+
+class com.example.myproject.splash_screen {
+# void onCreate(Bundle)
+}
+
+class com.example.myproject.RecipesAdapter {
+- RecyclerViewInterface recyclerViewInterface
+- ArrayList<recipe_feed> arrayList
++ <<Create>> RecipesAdapter(ArrayList<recipe_feed>,RecyclerViewInterface)
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+
+
+class com.example.myproject.RecipesAdapter$ViewHolder {
+~ ImageView profileImage
+~ TextView name
+~ ImageButton like
+~ int num
++ <<Create>> ViewHolder(View,RecyclerViewInterface)
+}
+
+
+class com.example.myproject.finishFrag {
+~ String[] ingArray
++ {static} finishFrag newInstance(String[])
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+
+
+class com.example.myproject.nutriAdapter {
+~ Context context
+~ String[] array
+~ LayoutInflater inflater
+~ TextView stepSign
++ <<Create>> nutriAdapter(Context,String[])
++ int getCount()
++ Object getItem(int)
++ long getItemId(int)
++ View getView(int,View,ViewGroup)
+}
+
+
+class com.example.myproject.prepFrag {
+~ String[] prepArray
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+
+
+class com.example.myproject.nutriFragCreate {
+~ TextView stepNum
+~ EditText stepDes
+~ ImageButton forward
+~ Button addBtn
+~ List<String> list
+~ int i
++ <<Create>> nutriFragCreate()
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+
+
+class com.example.myproject.InternetReceiver {
++ void onReceive(Context,Intent)
+}
+
+
+
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myproject.goalOptions
+android.widget.BaseAdapter <|-- com.example.myproject.ingAdapter
+android.widget.BaseAdapter <|-- com.example.myproject.PrepAdapter
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myproject.home_page
+java.io.Serializable <|.. com.example.myproject.goals
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myproject.goals
+androidx.fragment.app.Fragment <|-- com.example.myproject.ProfileFrag2
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myproject.recipe_info_Activity
+androidx.fragment.app.ListFragment <|-- com.example.myproject.ingFrag
+androidx.fragment.app.Fragment <|-- com.example.myproject.prepFragCreate
+androidx.fragment.app.Fragment <|-- com.example.myproject.ProfileFrag1
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myproject.recipeCreate
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myproject.sign_in
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myproject.Profile
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myproject.sign_up
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myproject.Summary
+androidx.fragment.app.ListFragment <|-- com.example.myproject.nutriFrag
+com.example.myproject.RecyclerViewInterface <|.. com.example.myproject.Recipes_activity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myproject.Recipes_activity
+androidx.fragment.app.Fragment <|-- com.example.myproject.photoFrag
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myproject.Recipe_item
+com.example.myproject.Adapter <|-- com.example.myproject.GoalAdapter
+com.example.myproject.GoalAdapter +.. com.example.myproject.GoalAdapter$ViewHolder
+com.example.myproject.ViewHolder <|-- com.example.myproject.GoalAdapter$ViewHolder
+androidx.fragment.app.Fragment <|-- com.example.myproject.ingFragCreate
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myproject.splash_screen
+com.example.myproject.Adapter <|-- com.example.myproject.RecipesAdapter
+com.example.myproject.RecipesAdapter +.. com.example.myproject.RecipesAdapter$ViewHolder
+com.example.myproject.ViewHolder <|-- com.example.myproject.RecipesAdapter$ViewHolder
+androidx.fragment.app.Fragment <|-- com.example.myproject.finishFrag
+android.widget.BaseAdapter <|-- com.example.myproject.nutriAdapter
+androidx.fragment.app.ListFragment <|-- com.example.myproject.prepFrag
+androidx.fragment.app.Fragment <|-- com.example.myproject.nutriFragCreate
+android.content.BroadcastReceiver <|-- com.example.myproject.InternetReceiver
+@enduml
